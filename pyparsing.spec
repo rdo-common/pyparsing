@@ -2,7 +2,7 @@
 
 Name:           pyparsing
 Version:        1.3
-Release:        1
+Release:        1%{?dist}
 Summary:        An object-oriented approach to text processing
 
 Group:          Development/Libraries
