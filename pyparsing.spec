@@ -1,19 +1,19 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:           pyparsing
-Version:        1.4.3
+Version:        1.4.4
 Release:        1%{?dist}
 Summary:        An object-oriented approach to text processing
 
 Group:          Development/Libraries
 License:        MIT
-URL:            http://pyparsing.sourceforge.net/
+URL:            http://pyparsing.wikispaces.com/
 Source0:        http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:        pyparsing-LICENSE
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
-BuildRequires:  %{__python}
+BuildRequires:  python-devel
 
 %description
 pyparsing is a module that can be used to easily and directly configure syntax
@@ -41,6 +41,9 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/pyparsing.py[co]
 
 %changelog
+* Mon Dec 11 2006 José Matos <jamatos[AT]fc.up.pt> - 1.4.4-1
+- New upstream version.
+
 * Mon Sep 11 2006 José Matos <jamatos[AT]fc.up.pt> - 1.4.3-1
 - New version.
 
