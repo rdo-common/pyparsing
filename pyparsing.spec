@@ -1,7 +1,7 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:           pyparsing
-Version:        1.4.4
+Version:        1.4.6
 Release:        1%{?dist}
 Summary:        An object-oriented approach to text processing
 
@@ -36,11 +36,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc CHANGES examples HowToUsePyparsing.html htmldoc pyparsingClassDiagram.png README LICENSE
+%doc CHANGES docs examples HowToUsePyparsing.html htmldoc pyparsingClassDiagram.* README LICENSE
 %{python_sitelib}/pyparsing.py
 %{python_sitelib}/pyparsing.py[co]
 
 %changelog
+* Sat Apr 21 2007 José Matos <jamatos[AT]fc.up.pt> - 1.4.6-1
+- New upstream version.
+
 * Mon Dec 11 2006 José Matos <jamatos[AT]fc.up.pt> - 1.4.4-1
 - New upstream version.
 
