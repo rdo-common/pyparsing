@@ -1,14 +1,14 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:           pyparsing
-Version:        1.4.7
+Version:        1.4.11
 Release:        1%{?dist}
 Summary:        An object-oriented approach to text processing
 
 Group:          Development/Libraries
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
-Source0:        http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:        http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:        pyparsing-LICENSE
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
@@ -37,10 +37,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc CHANGES docs examples HowToUsePyparsing.html htmldoc pyparsingClassDiagram.* README LICENSE
-%{python_sitelib}/pyparsing.py
-%{python_sitelib}/pyparsing.py[co]
+%if 0%{?fedora} >= 9
+%{python_sitelib}/pyparsing*egg-info
+%endif
+%{python_sitelib}/pyparsing.py*
+
 
 %changelog
+* Tue Apr  1 2008 José Matos <jamatos[AT]fc.up.pt> - 1.4.11-1
+- New upstream version, add egg-info for F9+.
+
 * Wed Aug 29 2007 José Matos <jamatos[AT]fc.up.pt> - 1.4.7-1
 - New upstream version.
 
