@@ -1,7 +1,7 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:           pyparsing
-Version:        1.4.11
+Version:        1.5.0
 Release:        1%{?dist}
 Summary:        An object-oriented approach to text processing
 
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Aug  4 2008 José Matos <jamatos[AT]fc.up.pt> - 1.5.0-1
+- new upstream release.
+
 * Tue Apr  1 2008 José Matos <jamatos[AT]fc.up.pt> - 1.4.11-1
 - New upstream version, add egg-info for F9+.
 
