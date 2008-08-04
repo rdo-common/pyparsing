@@ -2,7 +2,7 @@
 
 Name:           pyparsing
 Version:        1.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An object-oriented approach to text processing
 
 Group:          Development/Libraries
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Aug  4 2008 José Matos <jamatos[AT]fc.up.pt> - 1.5.0-2
+- respun (now with the right sources)
+
 * Mon Aug  4 2008 José Matos <jamatos[AT]fc.up.pt> - 1.5.0-1
 - new upstream release.
 
