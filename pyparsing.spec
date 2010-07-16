@@ -2,7 +2,7 @@
 
 Name:           pyparsing
 Version:        1.5.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        An object-oriented approach to text processing
 
 Group:          Development/Libraries
@@ -37,13 +37,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc CHANGES docs examples HowToUsePyparsing.html htmldoc pyparsingClassDiagram.* README LICENSE
-%if 0%{?fedora} >= 9
+%if 0%{?fedora} >= 9 || 0%{?rhel} >= 6
 %{python_sitelib}/pyparsing*egg-info
 %endif
 %{python_sitelib}/pyparsing.py*
 
 
 %changelog
+* Fri Jul 16 2010 Dan Horák <dan[at]danny.cz> - 1.5.0-6
+- include egginfo on EL >= 6
+
 * Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
