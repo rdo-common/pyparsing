@@ -2,7 +2,7 @@
 
 Name:           pyparsing
 Version:        1.5.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        An object-oriented approach to text processing
 
 Group:          Development/Libraries
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Jul 21 2010 David Malcolm <dmalcolm@redhat.com> - 1.5.0-7
+- Rebuilt for https://fedoraproject.org/wiki/Features/Python_2.7/MassRebuild
+
 * Fri Jul 16 2010 Dan Horák <dan[at]danny.cz> - 1.5.0-6
 - include egginfo on EL >= 6
 
