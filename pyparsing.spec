@@ -104,6 +104,9 @@ rm -rf %{buildroot}
 %{python3_sitelib}/pyparsing*egg-info
 %{python3_sitelib}/pyparsing.py*
 %endif # with_python3
+%if 0%{?fedora} >= 15 && 0%{?with_python3}
+%{python3_sitelib}/__pycache__/pyparsing*
+%endif # pycache
 
 %files doc
 %defattr(-,root,root,-)
