@@ -5,8 +5,8 @@
 %endif
 
 Name:           pyparsing
-Version:        1.5.5
-Release:        2%{?dist}
+Version:        1.5.6
+Release:        1%{?dist}
 Summary:        An object-oriented approach to text processing
 Group:          Development/Libraries
 License:        MIT
@@ -113,6 +113,9 @@ rm -rf %{buildroot}
 %doc CHANGES README LICENSE docs/*
 
 %changelog
+* Fri Jul  1 2011 José Matos <jamatos@fedoraproject.org> - 1.5.6-1
+- New upstream version.
+
 * Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
