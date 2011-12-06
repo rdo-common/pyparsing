@@ -6,7 +6,7 @@
 
 Name:           pyparsing
 Version:        1.5.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An object-oriented approach to text processing
 Group:          Development/Libraries
 License:        MIT
@@ -104,7 +104,7 @@ rm -rf %{buildroot}
 %{python3_sitelib}/pyparsing*egg-info
 %{python3_sitelib}/pyparsing.py*
 %endif # with_python3
-%if 0%{?fedora} >= 15 && 0%{?with_python3}
+%if ( 0%{?fedora} >= 15 || 0%{?rhel} >= 7 ) && 0%{?with_python3}
 %{python3_sitelib}/__pycache__/pyparsing*
 %endif # pycache
 
@@ -113,6 +113,9 @@ rm -rf %{buildroot}
 %doc CHANGES README LICENSE docs/*
 
 %changelog
+* Tue Dec  6 2011 David Malcolm <dmalcolm@redhat.com> - 1.5.6-2
+- fix __pycache__ conditional on RHEL
+
 * Fri Jul  1 2011 José Matos <jamatos@fedoraproject.org> - 1.5.6-1
 - New upstream version.
 
