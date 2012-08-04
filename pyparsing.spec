@@ -6,7 +6,7 @@
 
 Name:           pyparsing
 Version:        1.5.6
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        An object-oriented approach to text processing
 Group:          Development/Libraries
 License:        MIT
@@ -113,6 +113,9 @@ rm -rf %{buildroot}
 %doc CHANGES README LICENSE docs/*
 
 %changelog
+* Fri Aug 03 2012 David Malcolm <dmalcolm@redhat.com> - 1.5.6-6
+- rebuild for https://fedoraproject.org/wiki/Features/Python_3.3
+
 * Fri Aug  3 2012 David Malcolm <dmalcolm@redhat.com> - 1.5.6-5
 - remove rhel logic from with_python3 conditional
 
