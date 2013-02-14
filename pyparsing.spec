@@ -6,7 +6,7 @@
 
 Name:           pyparsing
 Version:        1.5.6
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        An object-oriented approach to text processing
 Group:          Development/Libraries
 License:        MIT
@@ -113,6 +113,9 @@ rm -rf %{buildroot}
 %doc CHANGES README LICENSE docs/*
 
 %changelog
+* Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5.6-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Fri Aug 03 2012 David Malcolm <dmalcolm@redhat.com> - 1.5.6-6
 - rebuild for https://fedoraproject.org/wiki/Features/Python_3.3
 
