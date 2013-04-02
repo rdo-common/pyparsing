@@ -1,0 +1,11 @@
+--- pyparsing_py3.py.orig	2013-04-03 01:28:01.927400414 +0200
++++ pyparsing_py3.py	2013-04-03 01:28:23.903443448 +0200
+@@ -891,7 +891,7 @@
+                 ParserElement._exprArgCache[ lookup ] = (value[0],value[1].copy())
+                 return value
+             except ParseBaseException as pe:
+-                exc.__traceback__ = None
++                pe.__traceback__ = None
+                 ParserElement._exprArgCache[ lookup ] = pe
+                 raise
+ 

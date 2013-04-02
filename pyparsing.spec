@@ -6,12 +6,13 @@
 
 Name:           pyparsing
 Version:        1.5.6
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        An object-oriented approach to text processing
 Group:          Development/Libraries
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
 Source0:        http://downloads.sourceforge.net/pyparsing/pyparsing-%{version}.tar.gz
+Patch0:         pyparsing-1.5.6-traceback-typo.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
@@ -48,6 +49,7 @@ This is the Python 3 version.
 
 %prep
 %setup -q
+%patch0
 mv docs/pyparsingClassDiagram.PNG docs/pyparsingClassDiagram.png
 rm docs/pyparsingClassDiagram.JPG
 dos2unix -k CHANGES LICENSE
@@ -113,6 +115,9 @@ rm -rf %{buildroot}
 %doc CHANGES README LICENSE docs/*
 
 %changelog
+* Wed Apr  3 2013 Thomas Spura <tomspur@fedoraproject.org> - 1.5.6-8
+- add patch to correct typo in exception handling
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5.6-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
