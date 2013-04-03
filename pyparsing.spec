@@ -49,6 +49,7 @@ This is the Python 3 version.
 
 %prep
 %setup -q
+dos2unix -k pyparsing_py3.py
 %patch0
 mv docs/pyparsingClassDiagram.PNG docs/pyparsingClassDiagram.png
 rm docs/pyparsingClassDiagram.JPG
