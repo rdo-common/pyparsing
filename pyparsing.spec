@@ -1,25 +1,17 @@
-%if 0%{?fedora} > 12
-%global with_python3 1
-%else
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print (get_python_lib())")}
-%endif
+%global         with_python3 1
 
 Name:           pyparsing
-Version:        1.5.6
-Release:        9%{?dist}
+Version:        2.0.1
+Release:        1%{?dist}
 Summary:        An object-oriented approach to text processing
 Group:          Development/Libraries
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
 Source0:        http://downloads.sourceforge.net/pyparsing/pyparsing-%{version}.tar.gz
-Patch0:         pyparsing-1.5.6-traceback-typo.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-
 BuildRequires:  python-devel
 BuildRequires:  dos2unix
 BuildRequires:  glibc-common
-
 %if 0%{?with_python3}
 BuildRequires: python3-devel
 %endif # if with_python3
@@ -49,14 +41,10 @@ This is the Python 3 version.
 
 %prep
 %setup -q
-dos2unix -k pyparsing_py3.py
-%patch0
 mv docs/pyparsingClassDiagram.PNG docs/pyparsingClassDiagram.png
 rm docs/pyparsingClassDiagram.JPG
-dos2unix -k CHANGES LICENSE
-dos2unix -k docs/examples/*
-dos2unix -k docs/htmldoc/epydoc*
-for f in CHANGES docs/examples/{holaMundo.py,mozillaCalendarParser.py} ; do
+dos2unix -k CHANGES LICENSE README
+for f in CHANGES ; do
     mv $f $f.iso88591
     iconv -f ISO-8859-1 -t UTF-8 -o $f $f.iso88591
     touch -r $f.iso88591 $f
@@ -69,7 +57,7 @@ cp -a . %{py3dir}
 %endif # with_python3
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 %if 0%{?with_python3}
 pushd %{py3dir}
@@ -87,13 +75,12 @@ pushd %{py3dir}
 popd
 %endif # with_python3
 
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 %clean
 rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
 %doc CHANGES README LICENSE
 %if 0%{?fedora} >= 9 || 0%{?rhel} >= 6
 %{python_sitelib}/pyparsing*egg-info
@@ -102,7 +89,6 @@ rm -rf %{buildroot}
 
 %if 0%{?with_python3}
 %files -n python3-pyparsing
-%defattr(-,root,root,-)
 %doc CHANGES README LICENSE
 %{python3_sitelib}/pyparsing*egg-info
 %{python3_sitelib}/pyparsing.py*
@@ -112,10 +98,12 @@ rm -rf %{buildroot}
 %endif # pycache
 
 %files doc
-%defattr(-,root,root,-)
 %doc CHANGES README LICENSE docs/*
 
 %changelog
+* Sun Oct 27 2013 Terje Rosten <terje.rosten@ntnu.no> - 2.0.1-1
+- 2.0.1
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5.6-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
