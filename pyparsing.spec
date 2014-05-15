@@ -2,7 +2,7 @@
 
 Name:           pyparsing
 Version:        2.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An object-oriented approach to text processing
 Group:          Development/Libraries
 License:        MIT
@@ -101,6 +101,9 @@ rm -rf %{buildroot}
 %doc CHANGES README LICENSE docs/*
 
 %changelog
+* Wed May 14 2014 Bohuslav Kabrda <bkabrda@redhat.com> - 2.0.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Changes/Python_3.4
+
 * Sun Oct 27 2013 Terje Rosten <terje.rosten@ntnu.no> - 2.0.1-1
 - 2.0.1
 
