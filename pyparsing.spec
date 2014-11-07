@@ -1,4 +1,6 @@
-%global         with_python3 1
+%if 0%{?fedora}
+%global with_python3 1
+%endif
 
 Name:           pyparsing
 Version:        2.0.1
@@ -93,7 +95,7 @@ rm -rf %{buildroot}
 %{python3_sitelib}/pyparsing*egg-info
 %{python3_sitelib}/pyparsing.py*
 %endif # with_python3
-%if ( 0%{?fedora} >= 15 || 0%{?rhel} >= 7 ) && 0%{?with_python3}
+%if 0%{?with_python3}
 %{python3_sitelib}/__pycache__/pyparsing*
 %endif # pycache
 
