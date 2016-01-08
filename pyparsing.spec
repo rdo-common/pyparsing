@@ -4,7 +4,7 @@
 
 Summary:        An object-oriented approach to text processing
 Name:           pyparsing
-Version:        2.0.6
+Version:        2.0.7
 Release:        1%{?dist}
 Group:          Development/Libraries
 License:        MIT
@@ -16,7 +16,6 @@ BuildRequires:  python2-devel
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
 %endif
-
 %description
 pyparsing is a module that can be used to easily and directly configure syntax
 definitions for any number of text parsing applications.
@@ -81,6 +80,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Fri Jan 08 2016 Terje Rosten <terje.rosten@ntnu.no> - 2.0.7-1
+- 2.0.7
+
 * Tue Nov 17 2015 Terje Rosten <terje.rosten@ntnu.no> - 2.0.6-1
 - 2.0.6
 - Some clean up
