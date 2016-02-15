@@ -1,43 +1,53 @@
-%if 0%{?fedora}
-%global with_python3 1
-%endif
+%global srcname pyparsing
+%global sum Python package with an object-oriented approach to text processing
 
-Summary:        An object-oriented approach to text processing
+Summary:        %{sum}
 Name:           pyparsing
-Version:        2.0.7
-Release:        2%{?dist}
-Group:          Development/Libraries
+Version:        2.1.0
+Release:        1%{?dist}
+
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
 Source0:        http://downloads.sourceforge.net/pyparsing/pyparsing-%{version}.tar.gz
+
 BuildArch:      noarch
 BuildRequires:  dos2unix
 BuildRequires:  python2-devel
-%if 0%{?with_python3}
 BuildRequires:  python3-devel
-%endif
+
+Requires:      python-%{srcname} = %{version}-%{release}
+
 %description
 pyparsing is a module that can be used to easily and directly configure syntax
 definitions for any number of text parsing applications.
 
+
 %package        doc
-Summary:        Documentation for pyparsing
-Group:          Development/Libraries
+Summary:        Documentation for pyparsing python package
 
 %description    doc
 The package contains documentation for pyparsing.
 
-%if 0%{?with_python3}
-%package     -n python3-pyparsing
-Summary:        An object-oriented approach to text processing (Python 3 version)
-Group:          Development/Libraries
+
+%package -n python2-%{srcname}
+Summary:       %{sum}
+%{?python_provide:%python_provide python2-%{srcname}}
+
+%description -n python2-pyparsing
+pyparsing is a module that can be used to easily and directly configure syntax
+definitions for any number of text parsing applications.
+
+
+%package -n python3-pyparsing
+Summary:        %{sum}
+%{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python3-pyparsing
 pyparsing is a module that can be used to easily and directly configure syntax
 definitions for any number of text parsing applications.
 
 This is the Python 3 version.
-%endif
+
 
 %prep
 %setup -q
@@ -46,40 +56,34 @@ rm docs/pyparsingClassDiagram.JPG
 dos2unix -k CHANGES LICENSE README
 
 %build
-%{py2_build}
-%if 0%{?with_python3}
-%{py3_build}
-%endif
+%py2_build
+%py3_build
 
 %install
-# Install python 3 first, so that python 2 gets precedence:
-%if 0%{?with_python3}
-%{py3_install}
-%endif
-%{py2_install}
+%py2_install
+%py3_install
 
 %files
+
+%files -n python2-pyparsing
 %license LICENSE
 %doc CHANGES README
-%if 0%{?fedora} >= 9 || 0%{?rhel} >= 6
-%{python_sitelib}/pyparsing*egg-info
-%endif
-%{python_sitelib}/pyparsing.py*
+%{python_sitelib}/*
 
-%if 0%{?with_python3}
 %files -n python3-pyparsing
 %license LICENSE
 %doc CHANGES README LICENSE
-%{python3_sitelib}/pyparsing*egg-info
-%{python3_sitelib}/pyparsing.py*
-%{python3_sitelib}/__pycache__/pyparsing*
-%endif
+%{python3_sitelib}/*
 
 %files doc
 %license LICENSE
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Mon Feb 15 2016 José Matos <jamatos@fedoraproject.org> - 2.1.0-1
+- update to 2.1.0
+- add a python2 subpackage preserving the upgrade path
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
