@@ -4,7 +4,7 @@
 Summary:        %{sum}
 Name:           pyparsing
 Version:        2.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -40,7 +40,7 @@ definitions for any number of text parsing applications.
 
 %package -n python3-pyparsing
 Summary:        %{sum}
-%{?python_provide:%python_provide python2-%{srcname}}
+%{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-pyparsing
 pyparsing is a module that can be used to easily and directly configure syntax
@@ -80,6 +80,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Tue Feb 16 2016 José Matos <jamatos@fedoraproject.org> - 2.1.0-2
+- fix typo in provides for the python3 subpackage
+
 * Mon Feb 15 2016 José Matos <jamatos@fedoraproject.org> - 2.1.0-1
 - update to 2.1.0
 - add a python2 subpackage preserving the upgrade path
