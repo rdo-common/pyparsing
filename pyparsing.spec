@@ -3,8 +3,8 @@
 
 Summary:        %{sum}
 Name:           pyparsing
-Version:        2.1.0
-Release:        2%{?dist}
+Version:        2.1.1
+Release:        1%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -80,6 +80,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Sun May  8 2016 José Matos <jamatos@fedoraproject.org> - 2.1.1-1
+- update to 2.1.1
+
 * Tue Feb 16 2016 José Matos <jamatos@fedoraproject.org> - 2.1.0-2
 - fix typo in provides for the python3 subpackage
 
