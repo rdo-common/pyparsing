@@ -3,7 +3,7 @@
 
 Summary:        %{sum}
 Name:           pyparsing
-Version:        2.1.1
+Version:        2.1.3
 Release:        1%{?dist}
 
 License:        MIT
@@ -80,6 +80,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Thu May 12 2016 José Matos <jamatos@fedoraproject.org> - 2.1.3-1
+- update to 2.1.3
+
 * Sun May  8 2016 José Matos <jamatos@fedoraproject.org> - 2.1.1-1
 - update to 2.1.1
 
