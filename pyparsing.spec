@@ -4,7 +4,7 @@
 Summary:        %{sum}
 Name:           pyparsing
 Version:        2.1.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -80,6 +80,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.5-2
+- https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
+
 * Thu Jun 16 2016 José Abílio Matos <jamatos@fc.up.pt> - 2.1.5-1
 - update to 2.1.5
 
