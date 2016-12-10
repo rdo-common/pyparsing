@@ -4,7 +4,7 @@
 Summary:        %{sum}
 Name:           pyparsing
 Version:        2.1.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -13,7 +13,9 @@ Source0:        http://downloads.sourceforge.net/pyparsing/pyparsing-%{version}.
 BuildArch:      noarch
 BuildRequires:  dos2unix
 BuildRequires:  python2-devel
+BuildRequires:  python2-setuptools
 BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
 
 Requires:      python-%{srcname} = %{version}-%{release}
 
@@ -80,6 +82,10 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Fri Dec 09 2016 Charalampos Stratakis <cstratak@redhat.com> - 2.1.5-3
+- Rebuild for Python 3.6
+- Add missing BuildRequires for python-setuptools
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1.5-2
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
