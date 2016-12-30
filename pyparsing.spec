@@ -3,8 +3,8 @@
 
 Summary:        %{sum}
 Name:           pyparsing
-Version:        2.1.5
-Release:        3%{?dist}
+Version:        2.1.10
+Release:        1%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -75,13 +75,19 @@ dos2unix -k CHANGES LICENSE README
 %files -n python3-pyparsing
 %license LICENSE
 %doc CHANGES README LICENSE
-%{python3_sitelib}/*
+%{python3_sitelib}/pyparsing.py
+%{python3_sitelib}/__pycache__/*
+%{python3_sitelib}/pyparsing-%{version}-py?.?.egg-info
 
 %files doc
 %license LICENSE
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Fri Dec 30 2016 José Matos <jamatos@fedoraproject.org> - 2.1.10-1
+- update to 2.1.10
+- do not own __pycache__
+
 * Fri Dec 09 2016 Charalampos Stratakis <cstratak@redhat.com> - 2.1.5-3
 - Rebuild for Python 3.6
 - Add missing BuildRequires for python-setuptools
