@@ -1,7 +1,11 @@
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global with_python3 1
+%endif
+
 %global srcname pyparsing
 %global sum Python package with an object-oriented approach to text processing
 
-%global build_wheel 1
+%global build_wheel 0
 
 %global python2_wheelname %{srcname}-%{version}-py2.py3-none-any.whl
 %global python3_wheelname %python2_wheelname
@@ -20,14 +24,18 @@ BuildRequires:  dos2unix
 BuildRequires:  python2-sphinx
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
+%if 0%{?with_python3}
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
+%endif
 
 %if 0%{?build_wheel}
 BuildRequires:  python2-pip
 BuildRequires:  python2-wheel
+%if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}-pip
 BuildRequires:  python%{python3_pkgversion}-wheel
+%endif
 %endif
 
 %description
@@ -53,6 +61,7 @@ pyparsing is a module that can be used to easily and directly configure syntax
 definitions for any number of text parsing applications.
 
 
+%if 0%{?with_python3}
 %package -n python3-pyparsing
 Summary:        %{sum}
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -62,6 +71,7 @@ pyparsing is a module that can be used to easily and directly configure syntax
 definitions for any number of text parsing applications.
 
 This is the Python 3 version.
+%endif
 
 
 %prep
@@ -75,10 +85,12 @@ dos2unix -k CHANGES LICENSE
 %else
 %py2_build
 %endif
+%if 0%{?with_python3}
 %if 0%{?build_wheel}
 %py3_build_wheel
 %else
 %py3_build
+%endif
 %endif
 
 # build docs
@@ -94,31 +106,37 @@ popd
 %else
 %py2_install
 %endif
+%if 0%{?with_python3}
 %if 0%{?build_wheel}
 %py3_install_wheel %{python3_wheelname}
 %else
 %py3_install
 %endif
+%endif
 
 
 %check
 %{__python2} unitTests.py
+%if 0%{?with_python3}
 %{__python3} unitTests.py
 %{__python3} simple_unit_tests.py
+%endif
 
 
 %files -n python2-pyparsing
 %license LICENSE
 %doc CHANGES README.rst
 %{python2_sitelib}/pyparsing.py*
-%{python2_sitelib}/pyparsing-*dist-info/
+%{python2_sitelib}/pyparsing-*
 
+%if 0%{?with_python3}
 %files -n python3-pyparsing
 %license LICENSE
 %doc CHANGES README.rst
 %{python3_sitelib}/pyparsing.py
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/pyparsing-*dist-info/
+%{python3_sitelib}/pyparsing-*
+%endif
 
 %files doc
 %license LICENSE
