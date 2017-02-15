@@ -1,10 +1,15 @@
 %global srcname pyparsing
 %global sum Python package with an object-oriented approach to text processing
 
+%global build_wheel 1
+
+%global python2_wheelname %{srcname}-%{version}-py2.py3-none-any.whl
+%global python3_wheelname %python2_wheelname
+
 Summary:        %{sum}
 Name:           pyparsing
 Version:        2.1.10
-Release:        2%{?dist}
+Release:        3%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -16,6 +21,13 @@ BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
+
+%if 0%{?build_wheel}
+BuildRequires:  python2-pip
+BuildRequires:  python-wheel
+BuildRequires:  python%{python3_pkgversion}-pip
+BuildRequires:  python%{python3_pkgversion}-wheel
+%endif
 
 Requires:      python-%{srcname} = %{version}-%{release}
 
@@ -58,32 +70,52 @@ rm docs/pyparsingClassDiagram.JPG
 dos2unix -k CHANGES LICENSE README
 
 %build
+%if 0%{?build_wheel}
+%py2_build_wheel
+%else
 %py2_build
+%endif
+%if 0%{?build_wheel}
+%py3_build_wheel
+%else
 %py3_build
+%endif
 
 %install
+%if 0%{?build_wheel}
+%py2_install_wheel %{python2_wheelname}
+%else
 %py2_install
+%endif
+%if 0%{?build_wheel}
+%py3_install_wheel %{python3_wheelname}
+%else
 %py3_install
+%endif
 
 %files
 
 %files -n python2-pyparsing
 %license LICENSE
 %doc CHANGES README
-%{python_sitelib}/*
+%{python2_sitelib}/pyparsing.py*
+%{python2_sitelib}/pyparsing-*dist-info/
 
 %files -n python3-pyparsing
 %license LICENSE
 %doc CHANGES README LICENSE
 %{python3_sitelib}/pyparsing.py
 %{python3_sitelib}/__pycache__/*
-%{python3_sitelib}/pyparsing-%{version}-py?.?.egg-info
+%{python3_sitelib}/pyparsing-*dist-info/
 
 %files doc
 %license LICENSE
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Mon Feb 13 2017 Charalampos Stratakis <cstratak@redhat.com> - 2.1.10-3
+- Rebuild as wheel
+
 * Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.10-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
