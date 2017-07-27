@@ -9,7 +9,7 @@
 Summary:        %{sum}
 Name:           pyparsing
 Version:        2.1.10
-Release:        3%{?dist}
+Release:        4%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -113,6 +113,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.10-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Mon Feb 13 2017 Charalampos Stratakis <cstratak@redhat.com> - 2.1.10-3
 - Rebuild as wheel
 
