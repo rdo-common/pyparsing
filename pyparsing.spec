@@ -9,7 +9,7 @@
 Summary:        %{sum}
 Name:           pyparsing
 Version:        2.1.10
-Release:        4%{?dist}
+Release:        5%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -29,8 +29,6 @@ BuildRequires:  python%{python3_pkgversion}-pip
 BuildRequires:  python%{python3_pkgversion}-wheel
 %endif
 
-Requires:      python-%{srcname} = %{version}-%{release}
-
 %description
 pyparsing is a module that can be used to easily and directly configure syntax
 definitions for any number of text parsing applications.
@@ -46,6 +44,8 @@ The package contains documentation for pyparsing.
 %package -n python2-%{srcname}
 Summary:       %{sum}
 %{?python_provide:%python_provide python2-%{srcname}}
+Provides:      pyparsing = %{version}-%{release}
+Obsoletes:     pyparsing < 2.1.10-5
 
 %description -n python2-pyparsing
 pyparsing is a module that can be used to easily and directly configure syntax
@@ -93,7 +93,6 @@ dos2unix -k CHANGES LICENSE README
 %py3_install
 %endif
 
-%files
 
 %files -n python2-pyparsing
 %license LICENSE
@@ -113,6 +112,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Wed Jan 24 2018 Miro Hrončok <mhroncok@redhat.com> - 2.1.10-5
+- Remove the empty pyparsing package, provide and obsolete it from python2-pyparsing
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.10-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
