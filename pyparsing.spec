@@ -9,7 +9,7 @@
 Summary:        %{sum}
 Name:           pyparsing
 Version:        2.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -112,6 +112,9 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Wed Jun 13 2018 Miro Hrončok <mhroncok@redhat.com> - 2.2.0-2
+- Rebuilt for Python 3.7
+
 * Wed Mar 14 2018 Charalampos Stratakis <cstratak@redhat.com> - 2.2.0-1
 - Update to 2.2.0
 
