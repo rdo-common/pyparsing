@@ -12,8 +12,8 @@
 
 Summary:        %{sum}
 Name:           pyparsing
-Version:        2.1.10
-Release:        7%{?dist}
+Version:        2.2.0
+Release:        3%{?dist}
 
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
@@ -128,6 +128,15 @@ dos2unix -k CHANGES LICENSE README
 %doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
 
 %changelog
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
+* Wed Jun 13 2018 Miro Hrončok <mhroncok@redhat.com> - 2.2.0-2
+- Rebuilt for Python 3.7
+
+* Wed Mar 14 2018 Charalampos Stratakis <cstratak@redhat.com> - 2.2.0-1
+- Update to 2.2.0
+
 * Wed Feb 21 2018 Iryna Shcherbina <ishcherb@redhat.com> - 2.1.10-7
 - Update Python 2 dependency declarations to new packaging standards
   (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
