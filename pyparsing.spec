@@ -8,15 +8,16 @@
 
 Summary:        %{sum}
 Name:           pyparsing
-Version:        2.2.0
-Release:        3%{?dist}
+Version:        2.3.0
+Release:        1%{?dist}
 
 License:        MIT
-URL:            http://pyparsing.wikispaces.com/
-Source0:        http://downloads.sourceforge.net/pyparsing/pyparsing-%{version}.tar.gz
+URL:            https://github.com/pyparsing/pyparsing
+Source0:        https://github.com/%{name}/%{name}/archive/%{name}_%{version}/%{name}-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  dos2unix
+BuildRequires:  epydoc
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 BuildRequires:  python3-devel
@@ -64,10 +65,11 @@ This is the Python 3 version.
 
 
 %prep
-%setup -q
-mv docs/pyparsingClassDiagram.PNG docs/pyparsingClassDiagram.png
-rm docs/pyparsingClassDiagram.JPG
-dos2unix -k CHANGES LICENSE README
+%setup -q -n %{name}-%{name}_%{version}
+mv pyparsingClassDiagram.PNG pyparsingClassDiagram.png
+rm pyparsingClassDiagram.JPG
+dos2unix -k CHANGES LICENSE README.md
+
 
 %build
 %if 0%{?build_wheel}
@@ -80,6 +82,10 @@ dos2unix -k CHANGES LICENSE README
 %else
 %py3_build
 %endif
+
+# build docs
+epydoc -v --name pyparsing -o htmldoc --inheritance listed --no-private --no-frames pyparsing.py
+
 
 %install
 %if 0%{?build_wheel}
@@ -94,24 +100,34 @@ dos2unix -k CHANGES LICENSE README
 %endif
 
 
+%check
+%{__python2} unitTests.py
+%{__python3} unitTests.py
+%{__python3} simple_unit_tests.py
+
+
 %files -n python2-pyparsing
 %license LICENSE
-%doc CHANGES README
+%doc CHANGES README.md
 %{python2_sitelib}/pyparsing.py*
 %{python2_sitelib}/pyparsing-*dist-info/
 
 %files -n python3-pyparsing
 %license LICENSE
-%doc CHANGES README LICENSE
+%doc CHANGES README.md
 %{python3_sitelib}/pyparsing.py
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/pyparsing-*dist-info/
 
 %files doc
 %license LICENSE
-%doc CHANGES README HowToUsePyparsing.html docs examples htmldoc
+%doc CHANGES README.md HowToUsePyparsing.html examples htmldoc
+
 
 %changelog
+* Thu Jan 10 2019 Dan Horák <dan[at]danny.cz> - 2.3.0-1
+- Update to 2.3.0
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
