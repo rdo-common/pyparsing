@@ -8,8 +8,8 @@
 
 Summary:        %{sum}
 Name:           pyparsing
-Version:        2.3.0
-Release:        2%{?dist}
+Version:        2.3.1
+Release:        1%{?dist}
 
 License:        MIT
 URL:            https://github.com/pyparsing/pyparsing
@@ -17,7 +17,7 @@ Source0:        https://github.com/%{name}/%{name}/archive/%{name}_%{version}/%{
 
 BuildArch:      noarch
 BuildRequires:  dos2unix
-BuildRequires:  epydoc
+BuildRequires:  python2-sphinx
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 BuildRequires:  python3-devel
@@ -66,9 +66,7 @@ This is the Python 3 version.
 
 %prep
 %setup -q -n %{name}-%{name}_%{version}
-mv pyparsingClassDiagram.PNG pyparsingClassDiagram.png
-rm pyparsingClassDiagram.JPG
-dos2unix -k CHANGES LICENSE README.md
+dos2unix -k CHANGES LICENSE
 
 
 %build
@@ -84,8 +82,11 @@ dos2unix -k CHANGES LICENSE README.md
 %endif
 
 # build docs
-epydoc -v --name pyparsing -o htmldoc --inheritance listed --no-private --no-frames pyparsing.py
-
+pushd docs
+# Theme is not available
+sed -i '/alabaster/d' conf.py
+sphinx-build -b html . html
+popd
 
 %install
 %if 0%{?build_wheel}
@@ -108,23 +109,26 @@ epydoc -v --name pyparsing -o htmldoc --inheritance listed --no-private --no-fra
 
 %files -n python2-pyparsing
 %license LICENSE
-%doc CHANGES README.md
+%doc CHANGES README.rst
 %{python2_sitelib}/pyparsing.py*
 %{python2_sitelib}/pyparsing-*dist-info/
 
 %files -n python3-pyparsing
 %license LICENSE
-%doc CHANGES README.md
+%doc CHANGES README.rst
 %{python3_sitelib}/pyparsing.py
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/pyparsing-*dist-info/
 
 %files doc
 %license LICENSE
-%doc CHANGES README.md HowToUsePyparsing.html examples htmldoc
+%doc CHANGES README.rst docs/html examples
 
 
 %changelog
+* Tue Feb 26 2019 Yatin Karel <ykarel@redhat.com> - 2.3.1-1
+- Update to 2.3.1
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
